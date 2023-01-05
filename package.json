@@ -1,6 +1,6 @@
 {
   "name": "nest-google-oauth2",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A google-oauth2 client for nestjs",
   "private": false,
   "license": "MIT",

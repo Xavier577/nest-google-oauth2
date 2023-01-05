@@ -41,12 +41,12 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationController } from './authentication.controller';
-import { GoogleOauth2ClientModule } from 'nest-google-oauth2';
+import { GoogleOAuth2Module } from 'nest-google-oauth2';
 
 @Module({
   imports: [
     ConfigModule,
-    GoogleOauth2ClientModule.registerAsync({
+    GoogleOAuth2Module.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
@@ -68,21 +68,21 @@ export class AuthenticationModule {}
 
 ```
 import { Injectable } from '@nestjs/common';
-import { GoogleOauth2ClientService } from 'nest-google-oauth2';
+import { GoogleOAuth2Service } from 'nest-google-oauth2';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthenticationService {
   constructor(
     private readonly configService: ConfigService,
-    private readonly googleOauth2Service: GoogleOauth2ClientService,
+    private readonly googleOAuth2Service: GoogleOAuth2Service,
   ) {}
   public async googleOauth(data: { accessToken: string }) {
-    const tokenInfo = await this.googleOauth2Service.getTokenInfo(
+    const tokenInfo = await this.googleOAuth2Service.getTokenInfo(
       data.accessToken,
     );
     console.log(tokenInfo);
-    const ticket = await this.googleOauth2Service.verifyIdToken({
+    const ticket = await this.googleOAuth2Service.verifyIdToken({
       idToken: data.accessToken,
       audience: this.configService.get('GOOGLE_CLIENT_ID'),
     });

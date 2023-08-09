@@ -36,7 +36,7 @@ $ npm install nest-google-oauth2
 
 ### Injecting the GoogleOAuth2Module
 
-```
+```typescript
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthenticationService } from './authentication.service';
@@ -66,7 +66,7 @@ export class AuthenticationModule {}
 
 ### Using the GoogleOAuth2Service
 
-```
+```typescript
 import { Injectable } from '@nestjs/common';
 import { GoogleOAuth2Service } from 'nest-google-oauth2';
 import { ConfigService } from '@nestjs/config';
